@@ -1,17 +1,30 @@
 {
   "name": "game-countdown",
-  "module": "server.ts",
-  "type": "module",
+  "module": "server/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start:server-dev": "concurrently \"tsc -w\" \"nodemon -r dotenv/config server/dist/js/server.js\"",
+    "start:server": "concurrently \"tsc -w\" \"node -r dotenv/config server/dist/js/server.js\"",
+    "start:client": "cd client && bun start",
+    "start:client-dev": "cd client && bun start"
+  },
   "devDependencies": {
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "nodemon": "^3.0.1"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@types/cors": "^2.8.16",
     "@types/express": "^4.17.21",
+    "@types/mongoose": "^5.11.97",
     "@types/node": "^20.9.0",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "mongoose": "^8.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
