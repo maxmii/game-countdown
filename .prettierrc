@@ -2,6 +2,6 @@
     "singleQuote": true,
     "semi": true,
     "trailingComma": "all",
-    "tabWidth": 2,
-    "bracketSameLine": false
+    "tabWidth": 4,
+    "bracketSameLine": true
 }
