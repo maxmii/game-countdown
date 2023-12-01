@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { IGame } from './../../types/game';
+import { IGame } from '../../types/types';
 import Game from '../../models/gameModel';
 
 const getGames = async (req: Request, res: Response): Promise<void> => {
