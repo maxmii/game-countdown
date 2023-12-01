@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 import { IGame } from '../../types/types';
-import Game from '../../models/gameModel';
+import Game from '../../models/game';
 
 const getGames = async (req: Request, res: Response): Promise<void> => {
     try {

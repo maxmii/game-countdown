@@ -15,9 +15,9 @@ const userSchema: Schema = new Schema(
             type: Date,
             required: true,
         },
-        gameListID: {
-            type: Number,
-            required: true,
+        gameList: {
+            type: Schema.Types.ObjectId,
+            ref: 'GameList',
         },
     },
     { timestamps: true },
