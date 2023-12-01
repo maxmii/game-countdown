@@ -10,6 +10,7 @@ const PORT: string | number = process.env.PORT || 4000;
 const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}${process.env.MONGODB_DB}?retryWrites=true&w=majority`;
 
 app.use(cors());
+app.use(express.json());
 
 app.use(gameRoutes);
 
