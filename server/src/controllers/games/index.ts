@@ -13,7 +13,6 @@ const getGames = async (req: Request, res: Response): Promise<void> => {
 
 const addGame = async (req: Request, res: Response): Promise<void> => {
     try {
-        console.log(req);
         const body = req.body as Pick<
             IGame,
             | 'name'
