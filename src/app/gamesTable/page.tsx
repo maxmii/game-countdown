@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 import fetchGames from '../components/fetchGames';
-import LoadingPage from '../components/loadingPage';
+import LoadingPage from '../components/layout/LoadingPage';
 
 interface Game {
   id: number;
