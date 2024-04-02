@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, memo } from 'react';
 
 import fetchGames from '../components/fetchGames';
 import LoadingPage from '../components/layout/LoadingPage';
+import Table from '../components/Table';
 
 interface Game {
   id: number;
@@ -11,40 +12,43 @@ interface Game {
   released?: string;
   rating?: number;
 }
+
+const columns = [
+  {
+    name: 'Name',
+    selector: (game: Game) => game.name,
+    sortable: true,
+  },
+  {
+    name: 'Release Date',
+    selector: (game: Game) => game.released,
+    sortable: true,
+  },
+  {
+    name: 'Rating',
+    selector: (game: Game) => game.rating,
+    sortable: true,
+  },
+];
+
 const GamesTablePage: React.FC = () => {
   const [games, setGames] = useState<Game[]>([]);
-  useEffect(() => {
-    const fetchGameData = async () => {
-      const gameData = await fetchGames();
-      setGames(gameData);
-    };
-    fetchGameData();
+
+  const fetchGameData = useCallback(async () => {
+    const gameData = await fetchGames();
+    setGames(gameData);
   }, []);
+
+  useEffect(() => {
+    fetchGameData();
+  }, [fetchGameData]);
+
   return (
     <>
       {games.length > 0 ? (
         <>
           <h1> Games List</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Release Date</th>
-                <th>Rating</th>
-              </tr>
-            </thead>
-            <tbody>
-              {games.map((game) => {
-                return (
-                  <tr key={game.id}>
-                    <td>{game.name}</td>
-                    <td>{game.released}</td>
-                    <td>{game.rating}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <Table data={games} columns={columns} />
         </>
       ) : (
         <LoadingPage />
@@ -53,4 +57,4 @@ const GamesTablePage: React.FC = () => {
   );
 };
 
-export default GamesTablePage;
+export default memo(GamesTablePage);
