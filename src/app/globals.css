@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.activeLink {
+  @apply bg-red-600 !important;
+}
