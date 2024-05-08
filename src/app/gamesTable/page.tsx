@@ -9,6 +9,7 @@ import LoadingPage from '../components/layout/LoadingPage';
 import dateFormat from 'dateformat';
 
 interface Game {
+  parent_platforms: any;
   id: number;
   name: string;
   released?: string;
@@ -55,7 +56,7 @@ const GamesTablePage: React.FC = () => {
         rating: game.rating,
         metacriticRating: game.metacritic,
         platforms: game.parent_platforms
-          ? game.parent_platforms.map((platform) => platform.platform.name)
+          ? game.parent_platforms.map((platform: any) => platform.platform.name)
           : [],
       })),
     [games]
