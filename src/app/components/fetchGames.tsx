@@ -1,9 +1,5 @@
 import axios from 'axios';
-
-interface Game {
-  id: number;
-  name: string;
-}
+import { Game } from '../models/Game.Model';
 
 const fetchGames = async (): Promise<Game[]> => {
   const response = await axios.get(

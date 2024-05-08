@@ -2,20 +2,11 @@
 
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import Link from 'next/link';
+import dateFormat from 'dateformat';
 
 import fetchGames from '../components/fetchGames';
 import LoadingPage from '../components/layout/LoadingPage';
-
-import dateFormat from 'dateformat';
-
-interface Game {
-  parent_platforms: Array<{ platform: { name: string } }>;
-  id: number;
-  name: string;
-  released?: string;
-  rating?: number;
-  metacritic?: number;
-}
+import { Game } from '../models/Game.Model';
 
 const columns = [
   {
@@ -36,7 +27,7 @@ const columns = [
 ];
 
 const GamesTablePage: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const [games, setGames] = useState<Array<Game>>([]);
 
   const fetchGameData = useCallback(async () => {
     const gameData = await fetchGames();
