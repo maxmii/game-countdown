@@ -69,7 +69,7 @@ const GamesTablePage: React.FC = () => {
       {games.length > 0 ? (
         <>
           <div className="h-fit w-fit">
-            <h1 className="text-xl justify-center flex items-center">
+            <h1 className="text-3xl justify-center flex items-center my-8">
               {' '}
               Games List
             </h1>
