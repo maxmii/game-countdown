@@ -1,33 +1,36 @@
 'use client';
 
-import { useState, useEffect, useCallback, memo } from 'react';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react';
+import Link from 'next/link';
 
 import fetchGames from '../components/fetchGames';
 import LoadingPage from '../components/layout/LoadingPage';
-import Table from '../components/Table';
+
+import dateFormat from 'dateformat';
 
 interface Game {
   id: number;
   name: string;
   released?: string;
   rating?: number;
+  metacritic?: number;
 }
 
 const columns = [
   {
     name: 'Name',
-    selector: (game: Game) => game.name,
-    sortable: true,
   },
   {
     name: 'Release Date',
-    selector: (game: Game) => game.released,
-    sortable: true,
   },
   {
     name: 'Rating',
-    selector: (game: Game) => game.rating,
-    sortable: true,
+  },
+  {
+    name: 'Metacritic Score',
+  },
+  {
+    name: 'Platforms',
   },
 ];
 
@@ -43,17 +46,67 @@ const GamesTablePage: React.FC = () => {
     fetchGameData();
   }, [fetchGameData]);
 
+  const formattedGames = useMemo(
+    () =>
+      games.map((game) => ({
+        id: game.id,
+        name: game.name,
+        releaseDate: dateFormat(game.released, 'dddd mmmm yyyy'),
+        rating: game.rating,
+        metacriticRating: game.metacritic,
+        platforms: game.parent_platforms
+          ? game.parent_platforms.map((platform) => platform.platform.name)
+          : [],
+      })),
+    [games]
+  );
+
+  console.log(formattedGames);
+
   return (
-    <>
+    <div className="flex content-center justify-center">
       {games.length > 0 ? (
         <>
-          <h1> Games List</h1>
-          <Table data={games} columns={columns} />
+          <div className="h-fit w-fit">
+            <h1 className="text-xl justify-center flex items-center">
+              {' '}
+              Games List
+            </h1>
+
+            <table className="bg-blue-400">
+              <thead>
+                <tr className="bg-blue-800">
+                  {columns.map((column) => (
+                    <th className="px-10" key={column.name}>
+                      {column.name}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {formattedGames.map((game) => (
+                  <tr className="text-center" key={game.id}>
+                    <td>
+                      <Link
+                        className="hover:text-blue-800"
+                        href={`/game/${game.id}`}
+                      >
+                        {game.name}
+                      </Link>
+                    </td>
+                    <td>{game.releaseDate}</td>
+                    <td>{game.rating} out of 5</td>
+                    <td>{game.metacriticRating}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </>
       ) : (
         <LoadingPage />
       )}
-    </>
+    </div>
   );
 };
 
