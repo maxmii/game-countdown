@@ -9,7 +9,7 @@ import LoadingPage from '../components/layout/LoadingPage';
 import dateFormat from 'dateformat';
 
 interface Game {
-  parent_platforms: any;
+  parent_platforms: Array<{ platform: { name: string } }>;
   id: number;
   name: string;
   released?: string;
