@@ -1,12 +1,12 @@
-'use client';
+'use client'
 
-import { useState, useEffect, useCallback, useMemo, memo } from 'react';
-import Link from 'next/link';
-import dateFormat from 'dateformat';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react'
+import Link from 'next/link'
+import dateFormat from 'dateformat'
 
-import fetchGames from '../components/fetchGames';
-import LoadingPage from '../components/layout/LoadingPage';
-import { Game } from '../models/Game.Model';
+import fetchGames from '../components/fetchGames'
+import LoadingPage from '../components/layout/LoadingPage'
+import { Game } from '../models/Game.Model'
 
 const columns = [
   {
@@ -24,19 +24,19 @@ const columns = [
   {
     name: 'Platforms',
   },
-];
+]
 
 const GamesTablePage: React.FC = () => {
-  const [games, setGames] = useState<Array<Game>>([]);
+  const [games, setGames] = useState<Array<Game>>([])
 
   const fetchGameData = useCallback(async () => {
-    const gameData = await fetchGames();
-    setGames(gameData);
-  }, []);
+    const gameData = await fetchGames()
+    setGames(gameData)
+  }, [])
 
   useEffect(() => {
-    fetchGameData();
-  }, [fetchGameData]);
+    fetchGameData()
+  }, [fetchGameData])
 
   const formattedGames = useMemo(
     () =>
@@ -51,9 +51,9 @@ const GamesTablePage: React.FC = () => {
           : [],
       })),
     [games]
-  );
+  )
 
-  console.log(formattedGames);
+  console.log(formattedGames)
 
   return (
     <div className="flex content-center justify-center">
@@ -99,7 +99,7 @@ const GamesTablePage: React.FC = () => {
         <LoadingPage />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default memo(GamesTablePage);
+export default memo(GamesTablePage)

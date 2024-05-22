@@ -1,15 +1,15 @@
 import React from 'react'
-import DataTable from 'react-data-table-component';
+import DataTable from 'react-data-table-component'
 
 interface Column {
-  name: string;
-  selector: (game: any) => any;
-  sortable: boolean;
+  name: string
+  selector: (game: any) => any
+  sortable: boolean
 }
 
 interface TableProps {
-  data: any[];
-  columns: Column[];
+  data: any[]
+  columns: Column[]
 }
 
 const Table = ({ data, columns }: TableProps) => {
@@ -23,7 +23,7 @@ const Table = ({ data, columns }: TableProps) => {
         selectableRows
       />
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(Table);
+export default React.memo(Table)
