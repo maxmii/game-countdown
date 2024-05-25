@@ -1,13 +1,13 @@
-import { memo } from 'react'
+import React from 'react'
 import Link from 'next/link'
 
-const ContactPage: React.FC = () => {
-  type SocialLink = {
-    title: string
-    link: string
-    icon: string
-  }
+interface SocialLink {
+  title: string
+  link: string
+  icon: string
+}
 
+const ContactPage: React.FC = () => {
 
   const socialLinks: SocialLink[] = [
     {
@@ -23,7 +23,7 @@ const ContactPage: React.FC = () => {
     {
       title: 'Email',
       link: 'mailto:morrm046@gmail.com',
-      icon: '',
+      icon: 'envelope',
     },
   ]
 
@@ -35,9 +35,11 @@ const ContactPage: React.FC = () => {
 
       <ul className="flex flex-col items-center justify-center">
         {socialLinks.map(({ title, link, icon }) => (
-          <li key={title}>
+          <li key={title} className="my-4">
+            {title}
             <Link href={link} passHref>
-              {title}
+              <span className="mx-2" />
+              <i className={`text-2xl bi bi-${icon}`} />
             </Link>
           </li>
         ))}
@@ -46,4 +48,4 @@ const ContactPage: React.FC = () => {
   )
 }
 
-export default memo(ContactPage)
+export default ContactPage
