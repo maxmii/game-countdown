@@ -10,7 +10,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
+    "types": ["jest", "@testing-library/jest-dom", "node"],
     "incremental": true,
     "plugins": [
       {
