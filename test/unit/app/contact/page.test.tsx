@@ -2,7 +2,7 @@ import React from 'react'
 import {render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 
-import ContactPage from '../../../src/app/contact/page'
+import ContactPage from '../../../../src/app/contact/page'
 
 
 describe('Contact Page', () => {
