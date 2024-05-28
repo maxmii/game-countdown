@@ -4,8 +4,8 @@ import { useState, useEffect, useCallback, useMemo, memo } from 'react'
 import Link from 'next/link'
 import dateFormat from 'dateformat'
 
-import fetchGames from '../../components/fetchGames'
-import LoadingPage from '../../components/layout/LoadingPage'
+import fetchGames from '@/components/fetchGames'
+import LoadingPage from '@/components/layout/LoadingPage'
 import { Game } from '../models/Game.Model'
 
 const columns = [
