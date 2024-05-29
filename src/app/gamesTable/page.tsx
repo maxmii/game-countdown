@@ -2,11 +2,11 @@
 
 import { useState, useEffect, useCallback, useMemo, memo } from 'react'
 import Link from 'next/link'
-import dateFormat from 'dateformat'
+import moment from 'moment'
 
 import fetchGames from '@/components/fetchGames'
 import LoadingPage from '@/components/layout/LoadingPage'
-import { Game } from '../models/Game.Model'
+import { Game } from '@/app/models/Game.Model'
 
 const columns = [
     {
@@ -43,7 +43,7 @@ const GamesTablePage: React.FC = () => {
             games.map((game) => ({
                 id: game.id,
                 name: game.name,
-                releaseDate: dateFormat(game.released, 'dddd mmmm yyyy'),
+                releaseDate: moment(game.released).format('MMMM Do YYYY'),
                 rating: game.rating,
                 metacriticRating: game.metacritic,
                 platforms: game.parent_platforms
@@ -52,8 +52,6 @@ const GamesTablePage: React.FC = () => {
             })),
         [games]
     )
-
-    console.log(formattedGames)
 
     return (
         <div className="flex content-center justify-center">
